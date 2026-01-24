@@ -4,6 +4,92 @@ const vowels = ['А', 'О', 'У', 'И', 'Ы', 'Э', 'Я', 'Ё', 'Ю', 'Е'];
 // Согласные для выбора
 const consonants = ['М', 'Н', 'П', 'Б', 'К', 'Т', 'Д', 'С', 'Л', 'Р'];
 
+// Цветовые схемы для каждой согласной
+const colorSchemes = {
+    'М': { // Изумрудный зелёный
+        dark: '#5a7a6a',
+        primary: '#7a9a8a',
+        light: '#a8c5b8',
+        lighter: '#8fb3a1'
+    },
+    'Н': { // Синий
+        dark: '#4a6a8a',
+        primary: '#6a8aaa',
+        light: '#9ab8d8',
+        lighter: '#7fa0c0'
+    },
+    'П': { // Фиолетовый
+        dark: '#6a5a7a',
+        primary: '#8a7a9a',
+        light: '#b8a8c8',
+        lighter: '#9f8fb0'
+    },
+    'Б': { // Вишнёвый
+        dark: '#7a4a5a',
+        primary: '#9a6a7a',
+        light: '#c8a0b0',
+        lighter: '#b08898'
+    },
+    'К': { // Коралловый
+        dark: '#8a5a5a',
+        primary: '#aa7a7a',
+        light: '#d8a8a8',
+        lighter: '#c09090'
+    },
+    'Т': { // Оранжевый
+        dark: '#8a6a4a',
+        primary: '#aa8a6a',
+        light: '#d8c0a0',
+        lighter: '#c0a888'
+    },
+    'Д': { // Золотистый
+        dark: '#7a7a4a',
+        primary: '#9a9a6a',
+        light: '#c8c8a0',
+        lighter: '#b0b088'
+    },
+    'С': { // Бирюзовый
+        dark: '#4a7a7a',
+        primary: '#6a9a9a',
+        light: '#a0c8c8',
+        lighter: '#88b0b0'
+    },
+    'Л': { // Лавандовый
+        dark: '#6a5a8a',
+        primary: '#8a7aaa',
+        light: '#b8a8d8',
+        lighter: '#a090c0'
+    },
+    'Р': { // Розовый
+        dark: '#8a5a6a',
+        primary: '#aa7a8a',
+        light: '#d8a8b8',
+        lighter: '#c090a0'
+    }
+};
+
+// Применение цветовой схемы
+function applyColorScheme(letter) {
+    const scheme = colorSchemes[letter];
+    if (!scheme) return;
+
+    const root = document.documentElement;
+    root.style.setProperty('--color-dark', scheme.dark);
+    root.style.setProperty('--color-primary', scheme.primary);
+    root.style.setProperty('--color-light', scheme.light);
+    root.style.setProperty('--color-lighter', scheme.lighter);
+    root.style.setProperty('--color-shadow', `rgba(${hexToRgb(scheme.dark)}, 0.5)`);
+    root.style.setProperty('--color-shadow-light', `rgba(${hexToRgb(scheme.lighter)}, 0.4)`);
+}
+
+// Конвертация HEX в RGB
+function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+        ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
+        : '0, 0, 0';
+}
+
 // Состояние игры
 let selectedConsonant = '';
 let currentFloor = 0;
@@ -31,6 +117,14 @@ function initSelectionScreen() {
         const btn = document.createElement('button');
         btn.className = 'consonant-btn';
         btn.textContent = letter;
+
+        // Применяем индивидуальный цвет кнопки
+        const scheme = colorSchemes[letter];
+        if (scheme) {
+            btn.style.background = `linear-gradient(145deg, ${scheme.light} 0%, ${scheme.lighter} 100%)`;
+            btn.style.boxShadow = `0 4px 15px rgba(${hexToRgb(scheme.lighter)}, 0.4)`;
+        }
+
         btn.addEventListener('click', () => selectConsonant(letter));
         consonantsGrid.appendChild(btn);
     });
@@ -41,6 +135,7 @@ function selectConsonant(letter) {
     selectedConsonant = letter;
     currentFloor = 0;
     collectedSyllables = [];
+    applyColorScheme(letter);
     selectionScreen.classList.add('hidden');
     gameScreen.classList.add('active');
     initBuilding();
@@ -258,7 +353,8 @@ function playVictorySound() {
 
 // Создание конфетти
 function createConfetti() {
-    const colors = ['#a8c5b8', '#8fb3a1', '#d4c5b5', '#f5e6d3', '#7a9a8a'];
+    const scheme = colorSchemes[selectedConsonant] || colorSchemes['М'];
+    const colors = [scheme.light, scheme.lighter, scheme.primary, '#d4c5b5', '#f5e6d3'];
 
     for (let i = 0; i < 50; i++) {
         const confetti = document.createElement('div');
