@@ -1,0 +1,358 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f0e8 0%, #e8e0d5 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Экран выбора буквы */
+.selection-screen {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+}
+
+.selection-screen h1 {
+    color: #5a7a6b;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.consonants-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.consonant-btn {
+    width: 70px;
+    height: 70px;
+    font-size: 32px;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #a8c5b8 0%, #8fb3a1 100%);
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(143, 179, 161, 0.4);
+}
+
+.consonant-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(143, 179, 161, 0.5);
+}
+
+.consonant-btn:active {
+    transform: translateY(0);
+}
+
+/* Игровой экран */
+.game-screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.game-screen.active {
+    display: flex;
+}
+
+.selection-screen.hidden {
+    display: none;
+}
+
+.change-letter-btn {
+    padding: 12px 25px;
+    font-size: 18px;
+    background: #d4c5b5;
+    color: #5a5a5a;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.change-letter-btn:hover {
+    background: #c9b9a7;
+}
+
+/* Здание */
+.building-container {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.building {
+    background: linear-gradient(180deg, #e8ddd0 0%, #d9cdbf 100%);
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.floor {
+    display: flex;
+    align-items: center;
+    height: 55px;
+    border-bottom: 2px solid #c9bda8;
+    position: relative;
+}
+
+.floor:last-child {
+    border-bottom: none;
+}
+
+.floor:first-child {
+    background: linear-gradient(90deg, rgba(255, 223, 150, 0.3) 0%, transparent 100%);
+    border-radius: 10px 10px 0 0;
+}
+
+.roof-floor {
+    background: linear-gradient(90deg, rgba(255, 215, 100, 0.4) 0%, rgba(255, 235, 150, 0.2) 100%);
+    border-radius: 10px 10px 0 0;
+}
+
+.finish-flag {
+    font-size: 28px;
+    background: rgba(255, 240, 200, 0.8);
+}
+
+.floor-number {
+    width: 40px;
+    font-size: 14px;
+    color: #8a7a6a;
+    text-align: center;
+}
+
+.vowel {
+    width: 50px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #6a8a7a;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    margin-left: 10px;
+}
+
+.shaft {
+    width: 80px;
+    height: 45px;
+    background: linear-gradient(180deg, #c5d5cc 0%, #b5c5bc 100%);
+    border-radius: 5px;
+    position: relative;
+}
+
+/* Лифт */
+.elevator-wrapper {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    height: calc(100% - 20px);
+}
+
+.elevator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 60px;
+    height: 45px;
+    background: linear-gradient(145deg, #7a9a8a 0%, #5a7a6a 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 15px rgba(90, 122, 106, 0.5);
+    transition: bottom 0.4s ease-in-out;
+    z-index: 10;
+}
+
+/* Панель слога */
+.syllable-panel {
+    background: white;
+    padding: 20px 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.syllable-display {
+    font-size: 64px;
+    font-weight: bold;
+    color: #5a7a6a;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.syllable-display.pop {
+    animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Управление */
+.controls {
+    display: flex;
+    gap: 20px;
+}
+
+.control-btn {
+    width: 70px;
+    height: 70px;
+    font-size: 32px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #a8c5b8 0%, #8fb3a1 100%);
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(143, 179, 161, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-btn:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(143, 179, 161, 0.5);
+}
+
+.control-btn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.control-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Эффект победы */
+.victory-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.victory-overlay.active {
+    display: flex;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.victory-text {
+    font-size: 48px;
+    color: #5a7a6a;
+    margin-bottom: 20px;
+    animation: bounce 0.6s ease infinite alternate;
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-15px); }
+}
+
+.victory-syllables {
+    font-size: 32px;
+    color: #7a9a8a;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 400px;
+}
+
+.victory-syllable {
+    background: linear-gradient(145deg, #a8c5b8 0%, #8fb3a1 100%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    animation: popIn 0.5s ease backwards;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.play-again-btn {
+    padding: 15px 40px;
+    font-size: 24px;
+    background: linear-gradient(145deg, #7a9a8a 0%, #5a7a6a 100%);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 20px rgba(90, 122, 106, 0.4);
+}
+
+.play-again-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(90, 122, 106, 0.5);
+}
+
+/* Конфетти */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    z-index: 101;
+}
+
+/* Подсказка по клавиатуре */
+.keyboard-hint {
+    font-size: 14px;
+    color: #999;
+    margin-top: 10px;
+}
