@@ -24,11 +24,11 @@ const colorSchemes = {
         light: '#b8a8c8',
         lighter: '#9f8fb0'
     },
-    'Б': { // Вишнёвый
-        dark: '#7a4a5a',
-        primary: '#9a6a7a',
-        light: '#c8a0b0',
-        lighter: '#b08898'
+    'Б': { // Индиго
+        dark: '#4a4a7a',
+        primary: '#6a6a9a',
+        light: '#a0a0c8',
+        lighter: '#8888b0'
     },
     'К': { // Коралловый
         dark: '#8a5a5a',
@@ -60,11 +60,11 @@ const colorSchemes = {
         light: '#b8a8d8',
         lighter: '#a090c0'
     },
-    'Р': { // Розовый
-        dark: '#8a5a6a',
-        primary: '#aa7a8a',
-        light: '#d8a8b8',
-        lighter: '#c090a0'
+    'Р': { // Мятный
+        dark: '#4a7a6a',
+        primary: '#6a9a8a',
+        light: '#a0c8b8',
+        lighter: '#88b0a0'
     }
 };
 
