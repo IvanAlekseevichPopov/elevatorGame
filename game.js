@@ -22,6 +22,7 @@ const changeLetterBtn = document.getElementById('changeLetterBtn');
 const victoryOverlay = document.getElementById('victoryOverlay');
 const victorySyllables = document.getElementById('victorySyllables');
 const playAgainBtn = document.getElementById('playAgainBtn');
+const chooseLetterBtn = document.getElementById('chooseLetterBtn');
 
 // Инициализация экрана выбора
 function initSelectionScreen() {
@@ -320,6 +321,7 @@ upBtn.addEventListener('click', moveUp);
 downBtn.addEventListener('click', moveDown);
 changeLetterBtn.addEventListener('click', goToSelection);
 playAgainBtn.addEventListener('click', playAgain);
+chooseLetterBtn.addEventListener('click', goToSelection);
 
 // Управление с клавиатуры
 document.addEventListener('keydown', (e) => {
