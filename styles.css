@@ -83,20 +83,6 @@ body {
     display: none;
 }
 
-.change-letter-btn {
-    padding: 12px 25px;
-    font-size: 18px;
-    background: #d4c5b5;
-    color: #5a5a5a;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.change-letter-btn:hover {
-    background: #c9b9a7;
-}
 
 /* Здание */
 .building-container {
@@ -431,6 +417,16 @@ body {
     box-shadow: none;
 }
 
+.exit-btn {
+    margin-left: 20px;
+    background: linear-gradient(145deg, #d4c5b5 0%, #c4b5a5 100%);
+    box-shadow: 0 4px 15px rgba(180, 165, 150, 0.4);
+}
+
+.exit-btn:hover:not(:disabled) {
+    box-shadow: 0 6px 20px rgba(180, 165, 150, 0.5);
+}
+
 /* Эффект победы */
 .victory-overlay {
     display: none;
@@ -590,11 +586,6 @@ body {
         /* Компенсация scale */
     }
 
-    .bottom-btn {
-        margin-top: 10px;
-        font-size: 16px;
-        padding: 10px 20px;
-    }
 
     /* Экран победы */
     .victory-text {
