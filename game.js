@@ -134,13 +134,6 @@ function initBuilding() {
     elevatorWrapper.appendChild(elevator);
     building.appendChild(elevatorWrapper);
 
-    // Позиционируем wrapper относительно building
-    const buildingRect = building.getBoundingClientRect();
-    const shaftRect = firstShaft.getBoundingClientRect();
-
-    elevatorWrapper.style.left = (shaftRect.left - buildingRect.left + 10) + 'px';
-    elevatorWrapper.style.width = '60px';
-
     updateElevatorPosition();
 }
 
