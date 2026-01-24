@@ -91,33 +91,31 @@ function initBuilding() {
         vowel.className = 'vowel';
         vowel.textContent = vowels[i];
 
-        // Добавляем окна или балконы
-        if (i % 3 === 1) {
-            // Балкон на каждом 3-м этаже (2, 5, 8)
+        floor.appendChild(floorNumber);
+        floor.appendChild(shaft);
+        floor.appendChild(vowel);
+
+        // Добавляем дверь на первом этаже, балконы и окна на остальных
+        if (i === 0) {
+            // Входная дверь на первом этаже
+            const entrance = document.createElement('div');
+            entrance.className = 'entrance';
+            floor.appendChild(entrance);
+        } else if (i % 3 === 1) {
+            // Балкон на этажах 2, 5, 8
             const balcony = document.createElement('div');
             balcony.className = 'balcony';
             balcony.innerHTML = '<div class="balcony-window"></div><div class="balcony-rail"></div>';
-            floor.appendChild(floorNumber);
-            floor.appendChild(shaft);
-            floor.appendChild(vowel);
             floor.appendChild(balcony);
         } else {
             // Обычное окно
             const window1 = document.createElement('div');
             window1.className = 'window';
-            floor.appendChild(floorNumber);
-            floor.appendChild(shaft);
-            floor.appendChild(vowel);
             floor.appendChild(window1);
         }
 
         building.appendChild(floor);
     }
-
-    // Добавляем входную дверь
-    const entrance = document.createElement('div');
-    entrance.className = 'entrance';
-    building.appendChild(entrance);
 
     // Добавляем лифт в шахту первого этажа
     const shafts = building.querySelectorAll('.shaft');

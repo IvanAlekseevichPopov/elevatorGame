@@ -253,43 +253,45 @@ body {
 
 /* Входная дверь */
 .entrance {
-    position: absolute;
-    bottom: 15px;
-    left: 12px;
-    width: 30px;
-    height: 42px;
+    width: 26px;
+    height: 38px;
+    margin-left: 20px;
     background: linear-gradient(180deg, #8b6914 0%, #6b4f0f 100%);
     border-radius: 3px 3px 0 0;
     border: 2px solid #5a4010;
+    position: relative;
+    align-self: flex-end;
+    margin-bottom: 7px;
 }
 
 .entrance::before {
     content: '';
     position: absolute;
-    top: 5px;
+    top: 4px;
     left: 50%;
     transform: translateX(-50%);
-    width: 18px;
-    height: 12px;
+    width: 14px;
+    height: 10px;
     background: linear-gradient(180deg, #a8d4e6 0%, #7bc0d8 100%);
-    border-radius: 8px 8px 0 0;
+    border-radius: 6px 6px 0 0;
     border: 1px solid #5a4010;
 }
 
 .entrance::after {
     content: '';
     position: absolute;
-    top: 55%;
-    right: 5px;
-    width: 5px;
-    height: 5px;
+    top: 50%;
+    right: 4px;
+    width: 4px;
+    height: 4px;
     background: #d4a520;
     border-radius: 50%;
 }
 
 .floor-number {
     width: 40px;
-    font-size: 14px;
+    font-size: 18px;
+    font-weight: 500;
     color: #8a7a6a;
     text-align: center;
 }
