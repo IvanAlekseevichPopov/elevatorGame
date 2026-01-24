@@ -129,6 +129,16 @@
             border-radius: 10px 10px 0 0;
         }
 
+        .roof-floor {
+            background: linear-gradient(90deg, rgba(255, 215, 100, 0.4) 0%, rgba(255, 235, 150, 0.2) 100%);
+            border-radius: 10px 10px 0 0;
+        }
+
+        .finish-flag {
+            font-size: 28px;
+            background: rgba(255, 240, 200, 0.8);
+        }
+
         .floor-number {
             width: 40px;
             font-size: 14px;
@@ -442,7 +452,27 @@
         function initBuilding() {
             building.innerHTML = '';
 
-            // Создаём этажи сверху вниз
+            // Финишный этаж (крыша)
+            const roofFloor = document.createElement('div');
+            roofFloor.className = 'floor roof-floor';
+
+            const roofNumber = document.createElement('div');
+            roofNumber.className = 'floor-number';
+            roofNumber.textContent = vowels.length + 1;
+
+            const roofShaft = document.createElement('div');
+            roofShaft.className = 'shaft';
+
+            const finishFlag = document.createElement('div');
+            finishFlag.className = 'vowel finish-flag';
+            finishFlag.innerHTML = '&#127937;'; // Флаг финиша
+
+            roofFloor.appendChild(roofNumber);
+            roofFloor.appendChild(roofShaft);
+            roofFloor.appendChild(finishFlag);
+            building.appendChild(roofFloor);
+
+            // Создаём этажи с гласными сверху вниз
             for (let i = vowels.length - 1; i >= 0; i--) {
                 const floor = document.createElement('div');
                 floor.className = 'floor';
@@ -503,6 +533,12 @@
 
         // Обновление отображения слога
         function updateSyllableDisplay() {
+            // На крыше не показываем слог
+            if (currentFloor >= vowels.length) {
+                syllableDisplay.textContent = '🏆';
+                return;
+            }
+
             const syllable = selectedConsonant + vowels[currentFloor];
             syllableDisplay.textContent = syllable;
             syllableDisplay.classList.remove('pop');
@@ -517,13 +553,13 @@
 
         // Обновление состояния кнопок
         function updateButtons() {
-            upBtn.disabled = isMoving || currentFloor >= vowels.length - 1;
+            upBtn.disabled = isMoving || currentFloor >= vowels.length;
             downBtn.disabled = isMoving || currentFloor <= 0;
         }
 
         // Движение вверх
         function moveUp() {
-            if (isMoving || currentFloor >= vowels.length - 1) return;
+            if (isMoving || currentFloor >= vowels.length) return;
             isMoving = true;
             currentFloor++;
             updateElevatorPosition();
@@ -533,8 +569,8 @@
                 updateSyllableDisplay();
                 updateButtons();
 
-                // Проверка победы
-                if (currentFloor === vowels.length - 1) {
+                // Проверка победы (достигли крыши)
+                if (currentFloor === vowels.length) {
                     setTimeout(showVictory, 500);
                 }
             }, 400);
