@@ -204,6 +204,7 @@ body {
     font-weight: bold;
     color: #5a7a6a;
     min-height: 80px;
+    min-width: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
