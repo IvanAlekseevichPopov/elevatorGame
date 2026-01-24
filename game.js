@@ -118,10 +118,7 @@ function initBuilding() {
         building.appendChild(floor);
     }
 
-    // Добавляем лифт в шахту первого этажа
-    const shafts = building.querySelectorAll('.shaft');
-    const firstShaft = shafts[shafts.length - 1]; // Нижний этаж
-
+    // Добавляем лифт
     const elevatorWrapper = document.createElement('div');
     elevatorWrapper.className = 'elevator-wrapper';
     elevatorWrapper.id = 'elevatorWrapper';
@@ -270,8 +267,9 @@ function createConfetti() {
         confetti.style.top = '-10px';
         confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
         confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-        confetti.style.width = (Math.random() * 10 + 5) + 'px';
-        confetti.style.height = confetti.style.width;
+        const size = (Math.random() * 10 + 5) + 'px';
+        confetti.style.width = size;
+        confetti.style.height = size;
 
         document.body.appendChild(confetti);
 
