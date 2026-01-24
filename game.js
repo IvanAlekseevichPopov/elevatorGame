@@ -51,7 +51,7 @@ function selectConsonant(letter) {
 function initBuilding() {
     building.innerHTML = '';
 
-    // Финишный этаж (крыша)
+    // Финишный этаж (чердак)
     const roofFloor = document.createElement('div');
     roofFloor.className = 'floor roof-floor';
 
@@ -66,9 +66,13 @@ function initBuilding() {
     finishFlag.className = 'vowel finish-flag';
     finishFlag.innerHTML = '&#127937;'; // Флаг финиша
 
+    const roofWindow = document.createElement('div');
+    roofWindow.className = 'window';
+
     roofFloor.appendChild(roofNumber);
     roofFloor.appendChild(roofShaft);
     roofFloor.appendChild(finishFlag);
+    roofFloor.appendChild(roofWindow);
     building.appendChild(roofFloor);
 
     // Создаём этажи с гласными сверху вниз
@@ -80,18 +84,40 @@ function initBuilding() {
         floorNumber.className = 'floor-number';
         floorNumber.textContent = i + 1;
 
+        const shaft = document.createElement('div');
+        shaft.className = 'shaft';
+
         const vowel = document.createElement('div');
         vowel.className = 'vowel';
         vowel.textContent = vowels[i];
 
-        const shaft = document.createElement('div');
-        shaft.className = 'shaft';
+        // Добавляем окна или балконы
+        if (i % 3 === 1) {
+            // Балкон на каждом 3-м этаже (2, 5, 8)
+            const balcony = document.createElement('div');
+            balcony.className = 'balcony';
+            balcony.innerHTML = '<div class="balcony-window"></div><div class="balcony-rail"></div>';
+            floor.appendChild(floorNumber);
+            floor.appendChild(shaft);
+            floor.appendChild(vowel);
+            floor.appendChild(balcony);
+        } else {
+            // Обычное окно
+            const window1 = document.createElement('div');
+            window1.className = 'window';
+            floor.appendChild(floorNumber);
+            floor.appendChild(shaft);
+            floor.appendChild(vowel);
+            floor.appendChild(window1);
+        }
 
-        floor.appendChild(floorNumber);
-        floor.appendChild(shaft);
-        floor.appendChild(vowel);
         building.appendChild(floor);
     }
+
+    // Добавляем входную дверь
+    const entrance = document.createElement('div');
+    entrance.className = 'entrance';
+    building.appendChild(entrance);
 
     // Добавляем лифт в шахту первого этажа
     const shafts = building.querySelectorAll('.shaft');
