@@ -90,19 +90,8 @@ function hexToRgb(hex) {
         : '0, 0, 0';
 }
 
-// Данные слогов (слово + иконка для каждого слога)
-const syllablesData = {
-    'М': { 'А': {word:'машина',icon:'car'}, 'О': {word:'морковь',icon:'carrot'}, 'У': {word:'муха',icon:'bug'}, 'И': {word:'миска',icon:'soup'}, 'Е': {word:'медведь',icon:'bear'}, 'Ы': {word:'мышка',icon:'mouse'}, 'Ю': null, 'Э': null, 'Я': {word:'мяч',icon:'circle'}, 'Ё': {word:'мёд',icon:'jar'} },
-    'Н': { 'А': {word:'наушники',icon:'headphones'}, 'О': {word:'ножницы',icon:'scissors'}, 'У': null, 'И': {word:'нитка',icon:'needle'}, 'Е': {word:'небо',icon:'cloud'}, 'Ы': null, 'Ю': null, 'Э': null, 'Я': {word:'няня',icon:'user'}, 'Ё': null },
-    'П': { 'А': {word:'паук',icon:'spider'}, 'О': {word:'помидор',icon:'tomato'}, 'У': {word:'пуговица',icon:'disc'}, 'И': {word:'пингвин',icon:'penguin'}, 'Е': {word:'перо',icon:'feather'}, 'Ы': null, 'Ю': null, 'Э': null, 'Я': {word:'пять',icon:'hash'}, 'Ё': {word:'пёс',icon:'dog'} },
-    'Б': { 'А': {word:'банан',icon:'banana'}, 'О': {word:'ботинок',icon:'boot'}, 'У': {word:'букет',icon:'flower-2'}, 'И': {word:'бинокль',icon:'binoculars'}, 'Е': {word:'белка',icon:'squirrel'}, 'Ы': {word:'бык',icon:'beef'}, 'Ю': null, 'Э': null, 'Я': null, 'Ё': null },
-    'К': { 'А': {word:'капуста',icon:'salad'}, 'О': {word:'кот',icon:'cat'}, 'У': {word:'курица',icon:'egg'}, 'И': {word:'кит',icon:'fish'}, 'Е': {word:'кепка',icon:'hard-hat'}, 'Ы': null, 'Ю': null, 'Э': null, 'Я': null, 'Ё': null },
-    'Т': { 'А': {word:'тарелка',icon:'utensils'}, 'О': {word:'торт',icon:'cake'}, 'У': {word:'туча',icon:'cloud-rain'}, 'И': {word:'тигр',icon:'cat'}, 'Е': {word:'телефон',icon:'phone'}, 'Ы': {word:'тыква',icon:'pumpkin'}, 'Ю': {word:'тюльпан',icon:'flower'}, 'Э': null, 'Я': null, 'Ё': {word:'тётя',icon:'user'} },
-    'Д': { 'А': {word:'дача',icon:'home'}, 'О': {word:'дом',icon:'house'}, 'У': {word:'дуб',icon:'tree-deciduous'}, 'И': {word:'диван',icon:'sofa'}, 'Е': {word:'дерево',icon:'tree-pine'}, 'Ы': {word:'дыня',icon:'citrus'}, 'Ю': null, 'Э': null, 'Я': {word:'дятел',icon:'bird'}, 'Ё': null },
-    'С': { 'А': {word:'самолёт',icon:'plane'}, 'О': {word:'солнце',icon:'sun'}, 'У': {word:'сумка',icon:'shopping-bag'}, 'И': {word:'сито',icon:'filter'}, 'Е': {word:'сердце',icon:'heart'}, 'Ы': {word:'сыр',icon:'cheese'}, 'Ю': null, 'Э': null, 'Я': null, 'Ё': null },
-    'Л': { 'А': {word:'лампа',icon:'lightbulb'}, 'О': {word:'лодка',icon:'sailboat'}, 'У': {word:'луна',icon:'moon'}, 'И': {word:'лиса',icon:'fox'}, 'Е': {word:'лев',icon:'lion'}, 'Ы': {word:'лыжи',icon:'ski'}, 'Ю': {word:'люстра',icon:'lamp-ceiling'}, 'Э': null, 'Я': {word:'лягушка',icon:'frog'}, 'Ё': {word:'лёд',icon:'snowflake'} },
-    'Р': { 'А': {word:'ракета',icon:'rocket'}, 'О': {word:'робот',icon:'bot'}, 'У': {word:'ручка',icon:'pen'}, 'И': {word:'рисунок',icon:'image'}, 'Е': {word:'река',icon:'waves'}, 'Ы': {word:'рыба',icon:'fish'}, 'Ю': {word:'рюкзак',icon:'backpack'}, 'Э': null, 'Я': {word:'рябина',icon:'tree-deciduous'}, 'Ё': null }
-};
+// Данные слогов (загружаются из syllables-words.js)
+const syllablesData = SYLLABLES_DATA;
 
 // Состояние игры
 let selectedConsonant = '';
