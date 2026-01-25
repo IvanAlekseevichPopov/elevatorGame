@@ -743,3 +743,49 @@ body {
     color: #999;
     margin-top: 10px;
 }
+
+/* Заглушка для мобильных устройств */
+.mobile-block {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    max-width: 350px;
+    width: 90%;
+}
+
+.mobile-block-icon {
+    font-size: 64px;
+    color: #a8c5b8;
+    margin-bottom: 20px;
+}
+
+.mobile-block-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #5a7a6b;
+    margin-bottom: 15px;
+}
+
+.mobile-block-text {
+    font-size: 16px;
+    color: #8a8a8a;
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+    .mobile-block {
+        display: flex;
+    }
+
+    .selection-screen,
+    .game-screen,
+    .victory-overlay {
+        display: none !important;
+    }
+}
