@@ -10,61 +10,71 @@ const colorSchemes = {
         dark: '#5a7a6a',
         primary: '#7a9a8a',
         light: '#a8c5b8',
-        lighter: '#8fb3a1'
+        lighter: '#8fb3a1',
+        iconFilter: 'brightness(0) saturate(100%) invert(48%) sepia(12%) saturate(621%) hue-rotate(107deg) brightness(92%) contrast(86%)'
     },
     'Н': { // Синий
         dark: '#4a6a8a',
         primary: '#6a8aaa',
         light: '#9ab8d8',
-        lighter: '#7fa0c0'
+        lighter: '#7fa0c0',
+        iconFilter: 'brightness(0) saturate(100%) invert(42%) sepia(15%) saturate(749%) hue-rotate(175deg) brightness(93%) contrast(88%)'
     },
     'П': { // Фиолетовый
         dark: '#6a5a7a',
         primary: '#8a7a9a',
         light: '#b8a8c8',
-        lighter: '#9f8fb0'
+        lighter: '#9f8fb0',
+        iconFilter: 'brightness(0) saturate(100%) invert(39%) sepia(10%) saturate(749%) hue-rotate(233deg) brightness(94%) contrast(88%)'
     },
     'Б': { // Индиго
         dark: '#4a4a7a',
         primary: '#6a6a9a',
         light: '#a0a0c8',
-        lighter: '#8888b0'
+        lighter: '#8888b0',
+        iconFilter: 'brightness(0) saturate(100%) invert(31%) sepia(15%) saturate(749%) hue-rotate(206deg) brightness(95%) contrast(88%)'
     },
     'К': { // Коралловый
         dark: '#8a5a5a',
         primary: '#aa7a7a',
         light: '#d8a8a8',
-        lighter: '#c09090'
+        lighter: '#c09090',
+        iconFilter: 'brightness(0) saturate(100%) invert(40%) sepia(15%) saturate(749%) hue-rotate(314deg) brightness(94%) contrast(88%)'
     },
     'Т': { // Оранжевый
         dark: '#8a6a4a',
         primary: '#aa8a6a',
         light: '#d8c0a0',
-        lighter: '#c0a888'
+        lighter: '#c0a888',
+        iconFilter: 'brightness(0) saturate(100%) invert(45%) sepia(15%) saturate(749%) hue-rotate(357deg) brightness(92%) contrast(88%)'
     },
     'Д': { // Золотистый
         dark: '#7a7a4a',
         primary: '#9a9a6a',
         light: '#c8c8a0',
-        lighter: '#b0b088'
+        lighter: '#b0b088',
+        iconFilter: 'brightness(0) saturate(100%) invert(50%) sepia(15%) saturate(621%) hue-rotate(22deg) brightness(92%) contrast(88%)'
     },
     'С': { // Бирюзовый
         dark: '#4a7a7a',
         primary: '#6a9a9a',
         light: '#a0c8c8',
-        lighter: '#88b0b0'
+        lighter: '#88b0b0',
+        iconFilter: 'brightness(0) saturate(100%) invert(48%) sepia(12%) saturate(621%) hue-rotate(131deg) brightness(92%) contrast(86%)'
     },
     'Л': { // Лавандовый
         dark: '#6a5a8a',
         primary: '#8a7aaa',
         light: '#b8a8d8',
-        lighter: '#a090c0'
+        lighter: '#a090c0',
+        iconFilter: 'brightness(0) saturate(100%) invert(39%) sepia(12%) saturate(749%) hue-rotate(220deg) brightness(94%) contrast(88%)'
     },
     'Р': { // Мятный
         dark: '#4a7a6a',
         primary: '#6a9a8a',
         light: '#a0c8b8',
-        lighter: '#88b0a0'
+        lighter: '#88b0a0',
+        iconFilter: 'brightness(0) saturate(100%) invert(48%) sepia(12%) saturate(621%) hue-rotate(107deg) brightness(92%) contrast(86%)'
     }
 };
 
@@ -80,6 +90,7 @@ function applyColorScheme(letter) {
     root.style.setProperty('--color-lighter', scheme.lighter);
     root.style.setProperty('--color-shadow', `rgba(${hexToRgb(scheme.dark)}, 0.5)`);
     root.style.setProperty('--color-shadow-light', `rgba(${hexToRgb(scheme.lighter)}, 0.4)`);
+    root.style.setProperty('--icon-filter', scheme.iconFilter);
 }
 
 // Конвертация HEX в RGB

@@ -26,7 +26,7 @@ const SYLLABLES_DATA = {
   },
   "П": {
     "А": { "word": "паук", "icon": "spider" },
-    "О": { "word": "помидор", "icon": "apple" },
+    "О": { "word": "помидор", "icon": "tomato" },
     "У": { "word": "пуговица", "icon": "disc" },
     "И": { "word": "пингвин", "icon": "penguin" },
     "Е": { "word": "перо", "icon": "feather" },

@@ -6,6 +6,7 @@
     --color-lighter: #8fb3a1;
     --color-shadow: rgba(90, 122, 106, 0.5);
     --color-shadow-light: rgba(143, 179, 161, 0.4);
+    --icon-filter: brightness(0) saturate(100%) invert(48%) sepia(12%) saturate(621%) hue-rotate(107deg) brightness(92%) contrast(86%);
 }
 
 * {
@@ -457,11 +458,7 @@ body {
 .word-icon img {
     width: 100%;
     height: 100%;
-}
-
-.word-icon img,
-.word-icon svg {
-    stroke: var(--color-primary);
+    filter: var(--icon-filter);
 }
 
 .word-text {
