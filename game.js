@@ -160,7 +160,7 @@ function initBuilding() {
 
     const finishFlag = document.createElement('div');
     finishFlag.className = 'vowel finish-flag';
-    finishFlag.innerHTML = '&#127937;'; // Флаг финиша
+    finishFlag.innerHTML = '<i class="fa-solid fa-flag"></i>';
 
     const roofWindow = document.createElement('div');
     roofWindow.className = 'window';

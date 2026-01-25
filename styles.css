@@ -223,8 +223,9 @@ body {
 }
 
 .finish-flag {
-    font-size: 28px;
+    font-size: 24px;
     background: rgba(255, 240, 200, 0.8);
+    color: var(--color-primary);
 }
 
 /* Окна */
