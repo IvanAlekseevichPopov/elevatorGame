@@ -93,7 +93,7 @@ function hexToRgb(hex) {
 // Данные слогов (слово + иконка для каждого слога)
 const syllablesData = {
     'М': { 'А': {word:'машина',icon:'car'}, 'О': {word:'морковь',icon:'carrot'}, 'У': {word:'муха',icon:'bug'}, 'И': {word:'миска',icon:'soup'}, 'Е': {word:'медведь',icon:'bear'}, 'Ы': {word:'мышка',icon:'mouse'}, 'Ю': null, 'Э': null, 'Я': {word:'мяч',icon:'circle'}, 'Ё': {word:'мёд',icon:'jar'} },
-    'Н': { 'А': {word:'нож',icon:'knife'}, 'О': {word:'ножницы',icon:'scissors'}, 'У': null, 'И': {word:'нитка',icon:'needle'}, 'Е': {word:'небо',icon:'cloud'}, 'Ы': null, 'Ю': null, 'Э': null, 'Я': {word:'няня',icon:'user'}, 'Ё': null },
+    'Н': { 'А': {word:'наушники',icon:'headphones'}, 'О': {word:'ножницы',icon:'scissors'}, 'У': null, 'И': {word:'нитка',icon:'needle'}, 'Е': {word:'небо',icon:'cloud'}, 'Ы': null, 'Ю': null, 'Э': null, 'Я': {word:'няня',icon:'user'}, 'Ё': null },
     'П': { 'А': {word:'паук',icon:'spider'}, 'О': {word:'помидор',icon:'apple'}, 'У': {word:'пуговица',icon:'disc'}, 'И': {word:'пингвин',icon:'penguin'}, 'Е': {word:'перо',icon:'feather'}, 'Ы': null, 'Ю': null, 'Э': null, 'Я': {word:'пять',icon:'hash'}, 'Ё': {word:'пёс',icon:'dog'} },
     'Б': { 'А': {word:'банан',icon:'banana'}, 'О': {word:'ботинок',icon:'boot'}, 'У': {word:'букет',icon:'flower-2'}, 'И': {word:'бинокль',icon:'binoculars'}, 'Е': {word:'белка',icon:'squirrel'}, 'Ы': {word:'бык',icon:'beef'}, 'Ю': null, 'Э': null, 'Я': null, 'Ё': null },
     'К': { 'А': {word:'капуста',icon:'salad'}, 'О': {word:'кот',icon:'cat'}, 'У': {word:'курица',icon:'egg'}, 'И': {word:'кит',icon:'fish'}, 'Е': {word:'кепка',icon:'hard-hat'}, 'Ы': null, 'Ю': null, 'Э': null, 'Я': null, 'Ё': null },
