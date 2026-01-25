@@ -235,7 +235,7 @@ function updateElevatorPosition() {
     const floorHeight = 55; // Высота этажа
 
     // Позиция снизу (0 = нижний этаж)
-    const bottomPosition = currentFloor * floorHeight + 5;
+    const bottomPosition = currentFloor * floorHeight + 6;
     elevator.style.bottom = bottomPosition + 'px';
 }
 
