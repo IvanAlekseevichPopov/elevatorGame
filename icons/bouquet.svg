@@ -1,0 +1,35 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Букет цветов -->
+  <!-- Центральный цветок -->
+  <circle cx="12" cy="6" r="2" />
+  <circle cx="10" cy="4.5" r="1.5" />
+  <circle cx="14" cy="4.5" r="1.5" />
+  <circle cx="10" cy="7.5" r="1.5" />
+  <circle cx="14" cy="7.5" r="1.5" />
+  <!-- Левый цветок -->
+  <circle cx="7" cy="9" r="1.5" />
+  <circle cx="5.5" cy="8" r="1" />
+  <circle cx="8.5" cy="8" r="1" />
+  <circle cx="6" cy="10.5" r="1" />
+  <!-- Правый цветок -->
+  <circle cx="17" cy="9" r="1.5" />
+  <circle cx="15.5" cy="8" r="1" />
+  <circle cx="18.5" cy="8" r="1" />
+  <circle cx="18" cy="10.5" r="1" />
+  <!-- Стебли и обёртка -->
+  <path d="M12 10v6" />
+  <path d="M7 11l3 5" />
+  <path d="M17 11l-3 5" />
+  <path d="M8 22l4-6 4 6" />
+  <path d="M8 22h8" />
+</svg>
