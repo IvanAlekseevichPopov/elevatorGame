@@ -4,6 +4,22 @@ const vowels = ['А', 'О', 'У', 'И', 'Е', 'Ы', 'Ю', 'Э', 'Я', 'Ё'];
 // Согласные для выбора
 const consonants = ['М', 'Н', 'П', 'Б', 'К', 'Т', 'Д', 'С', 'Л', 'Р'];
 
+// Транслитерация для имён аудиофайлов
+const TRANSLIT = {
+    'М': 'm', 'Н': 'n', 'П': 'p', 'Б': 'b', 'К': 'k',
+    'Т': 't', 'Д': 'd', 'С': 's', 'Л': 'l', 'Р': 'r',
+    'А': 'a', 'О': 'o', 'У': 'u', 'И': 'i', 'Е': 'e',
+    'Ы': 'y', 'Ю': 'yu', 'Э': 'eh', 'Я': 'ya', 'Ё': 'yo'
+};
+
+// Настройки озвучки слогов
+const VOICE_OPTIONS = {
+    aidar: 'sounds/aidar',   // мужской голос, slow
+    eugene: 'sounds/eugene'  // мужской голос, x-slow
+};
+let currentVoice = 'aidar';  // Текущий голос
+let syllableAudio = null;    // Текущий воспроизводимый звук
+
 // Цветовые схемы для каждой согласной
 const colorSchemes = {
     'М': { // Изумрудный зелёный
@@ -99,6 +115,33 @@ function hexToRgb(hex) {
     return result
         ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
         : '0, 0, 0';
+}
+
+// Озвучивание слога
+function speakSyllable(consonant, vowel) {
+    // Останавливаем предыдущее воспроизведение
+    if (syllableAudio) {
+        syllableAudio.pause();
+        syllableAudio.currentTime = 0;
+    }
+
+    // Формируем путь к файлу
+    const filename = TRANSLIT[consonant] + TRANSLIT[vowel] + '.wav';
+    const path = VOICE_OPTIONS[currentVoice] + '/' + filename;
+
+    // Создаём и воспроизводим аудио
+    syllableAudio = new Audio(path);
+    syllableAudio.play().catch(err => {
+        // Игнорируем ошибки (например, если файл не найден)
+        console.log('Не удалось воспроизвести:', path, err);
+    });
+}
+
+// Переключение голоса
+function setVoice(voice) {
+    if (VOICE_OPTIONS[voice]) {
+        currentVoice = voice;
+    }
 }
 
 // Данные слогов (загружаются из syllables-words.js)
@@ -271,6 +314,9 @@ function updateSyllableDisplay() {
     syllableDisplay.classList.remove('pop');
     void syllableDisplay.offsetWidth; // Trigger reflow
     syllableDisplay.classList.add('pop');
+
+    // Озвучиваем слог
+    speakSyllable(selectedConsonant, vowel);
 
     // Показываем иконку и слово
     const data = syllablesData[selectedConsonant]?.[vowel];
