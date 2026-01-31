@@ -22,8 +22,9 @@ styles.css           — стили, анимации, адаптив, CSS-пе�
 game.js              — вся логика: состояние, DOM, движение лифта, победа, озвучка
 syllables-words.js   — данные: слог → {слово, иконка} для каждой согласной
 icons/*.svg          — ~70 SVG-иконок из Lucide
-sounds/aidar/*.wav   — озвучка слогов (голос aidar, slow) — 100 файлов
-sounds/eugene/*.wav  — озвучка слогов (голос eugene, x-slow) — 100 файлов
+sounds/aidar/*.wav   — озвучка слогов (голос aidar) — 100 файлов
+sounds/eugene/*.wav  — озвучка слогов (голос eugene) — 100 файлов
+tts/                 — скрипты генерации озвучки (Silero TTS)
 ```
 
 ## Архитектура
@@ -119,39 +120,20 @@ const SYLLABLES_DATA = {
 
 ## Озвучка слогов
 
-Слоги озвучиваются при каждой смене этажа. Аудиофайлы сгенерированы с помощью **Silero TTS v4** (русские голоса).
+Слоги озвучиваются автоматически при каждой смене этажа. Кнопка 🔊 под панелью слога позволяет прослушать повторно.
 
-### Голоса
+Аудиофайлы в `sounds/aidar/` и `sounds/eugene/`.
 
-| Голос | Папка | Скорость SSML | Описание |
-|-------|-------|---------------|----------|
-| `aidar` | `sounds/aidar/` | `slow` | Мужской голос, умеренно медленный |
-| `eugene` | `sounds/eugene/` | `x-slow` | Мужской голос, очень медленный |
+| Голос | Папка | Описание |
+|-------|-------|----------|
+| `aidar` | `sounds/aidar/` | Мужской, умеренно медленный (по умолчанию) |
+| `eugene` | `sounds/eugene/` | Мужской, очень медленный |
 
-По умолчанию используется `aidar`. Переключение: `setVoice('eugene')`.
+Переключение голоса: `setVoice('eugene')` или `setVoice('aidar')`.
 
-### Формат имён файлов
+Имена файлов — транслитерация: `МА` → `ma.wav`, `КЮ` → `kyu.wav` (см. `TRANSLIT` в game.js).
 
-Транслитерация кириллицы:
-```
-М→m, Н→n, П→p, Б→b, К→k, Т→t, Д→d, С→s, Л→l, Р→r
-А→a, О→o, У→u, И→i, Е→e, Ы→y, Ю→yu, Э→eh, Я→ya, Ё→yo
-```
-
-Примеры: `МА` → `ma.wav`, `КЮ` → `kyu.wav`, `НЯ` → `nya.wav`
-
-### Перегенерация аудио
-
-Скрипт `generate_all.py` генерирует все 100 слогов через Docker:
-
-```bash
-docker run --rm \
-  -v "$(pwd)/generate_all.py:/app/generate_all.py" \
-  -v "$(pwd)/sounds:/output" \
-  python:3.11-slim \
-  bash -c "pip install -q torch torchaudio --index-url https://download.pytorch.org/whl/cpu && \
-           pip install -q omegaconf scipy numpy && python /app/generate_all.py"
-```
+**Перегенерация:** см. `tts/README.md`
 
 ## DOM-структура (index.html)
 
@@ -164,15 +146,18 @@ body
 │   ├── #consonantsGrid  — генерируется в initSelectionScreen()
 │   └── .parent-tips     — советы родителям
 ├── #gameScreen          — игровой экран
-│   ├── .building-wrapper
-│   │   ├── .roof        — треугольная крыша с трубой
-│   │   └── #building    — генерируется в initBuilding()
-│   │       ├── .floor.roof-floor  — 11-й этаж (финиш с флагом)
-│   │       ├── .floor (×10)       — этажи с гласными, окнами/балконами/дверью
-│   │       └── #elevatorWrapper   — абсолютно позиционированный лифт
-│   ├── .syllable-panel
-│   │   ├── #syllableDisplay — большой текст слога (64px)
-│   │   └── #wordHint       — иконка + слово
+│   ├── .building-container
+│   │   ├── .building-wrapper
+│   │   │   ├── .roof        — треугольная крыша с трубой
+│   │   │   └── #building    — генерируется в initBuilding()
+│   │   │       ├── .floor.roof-floor  — 11-й этаж (финиш с флагом)
+│   │   │       ├── .floor (×10)       — этажи с гласными, окнами/балконами/дверью
+│   │   │       └── #elevatorWrapper   — абсолютно позиционированный лифт
+│   │   └── .syllable-section
+│   │       ├── .syllable-panel
+│   │       │   ├── #syllableDisplay — большой текст слога (64px)
+│   │       │   └── #wordHint       — иконка + слово
+│   │       └── #soundBtn           — кнопка повторного воспроизведения слога
 │   └── .controls            — кнопки ▲ ▼ и выход
 └── #victoryOverlay          — экран победы с собранными слогами
 ```

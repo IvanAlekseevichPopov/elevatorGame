@@ -169,6 +169,7 @@ const victoryOverlay = document.getElementById('victoryOverlay');
 const victorySyllables = document.getElementById('victorySyllables');
 const playAgainBtn = document.getElementById('playAgainBtn');
 const chooseLetterBtn = document.getElementById('chooseLetterBtn');
+const soundBtn = document.getElementById('soundBtn');
 
 // Инициализация экрана выбора
 function initSelectionScreen() {
@@ -305,8 +306,11 @@ function updateSyllableDisplay() {
     if (currentFloor >= vowels.length) {
         syllableDisplay.textContent = '🏆';
         wordHint.style.display = 'none';
+        soundBtn.style.display = 'none';
         return;
     }
+
+    soundBtn.style.display = 'flex';
 
     const vowel = vowels[currentFloor];
     const syllable = selectedConsonant + vowel;
@@ -488,6 +492,11 @@ downBtn.addEventListener('click', moveDown);
 changeLetterBtn.addEventListener('click', goToSelection);
 playAgainBtn.addEventListener('click', playAgain);
 chooseLetterBtn.addEventListener('click', goToSelection);
+soundBtn.addEventListener('click', () => {
+    if (currentFloor < vowels.length) {
+        speakSyllable(selectedConsonant, vowels[currentFloor]);
+    }
+});
 
 // Управление с клавиатуры
 document.addEventListener('keydown', (e) => {
